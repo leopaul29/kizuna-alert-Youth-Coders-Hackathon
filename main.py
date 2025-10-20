@@ -141,6 +141,17 @@ def leave():
     return redirect(url_for('index'))
 
 
+@app.route('/evacuation')
+def evacuation():
+    """Evacuation centers and route map"""
+    # Get postal code from session if available
+    postal_code = session.get('postal_code', '')
+    
+    return render_template('evacuation.html', 
+                         alerts=DISASTER_ALERTS,
+                         postal_code=postal_code)
+
+
 if __name__ == '__main__':
     # Run on 0.0.0.0:5000 for Replit compatibility
     app.run(host='0.0.0.0', port=5000, debug=True)
