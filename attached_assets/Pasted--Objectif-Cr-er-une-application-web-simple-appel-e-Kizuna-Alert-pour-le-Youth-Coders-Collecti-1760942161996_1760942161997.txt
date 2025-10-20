@@ -1,0 +1,45 @@
+**Objectif** : Créer une application web simple appelée "Kizuna Alert" pour le Youth Coders Collective Hackathon 2025. L'app envoie des notifications fictives d'alerte de catastrophe (ex. : séisme) et permet aux utilisateurs d'un même quartier japonais (via code postal) de rejoindre un chat communautaire pour partager des ressources. L'objectif est de favoriser l'entraide et la résilience, avec un focus sur le design épuré et l'impact social.
+
+**Instructions pour Replit** :
+
+1. Crée un projet Python avec Flask sur Replit (choisis le template Flask).
+2. Mets en place une structure de base pour une app web avec les fonctionnalités suivantes :
+    - Une page d'accueil (index.html) avec un design minimaliste inspiré du wabi-sabi japonais (couleurs sobres : bleu, blanc, gris ; police lisible comme Roboto).
+    - Un formulaire où l'utilisateur entre un code postal japonais (ex. : 100-0001 pour Tokyo) pour rejoindre un "groupe d'entraide" fictif.
+    - Une page de chat simple (simulée avec du texte statique pour la démo) où les utilisateurs voient des messages comme "J'ai de l'eau à partager" ou "Besoin d'aide pour évacuation".
+    - Une simulation d'alerte de catastrophe (ex. : "Séisme de magnitude 5.0 détecté à Tokyo") affichée sur la page d'accueil.
+3. Utilise :
+    - **Backend** : Flask pour gérer les routes (accueil, formulaire, chat).
+    - **Frontend** : HTML/CSS pour une interface claire, avec un fichier `style.css` pour le design.
+    - **Données fictives** : Pas d'API externe pour l'instant, utilise un dictionnaire Python pour simuler les alertes et messages de chat.
+4. Assure-toi que le code est bien commenté et que le [README.md](http://readme.md/) explique :
+    - Le but du projet (lien avec le thème "social good" et le Japon).
+    - Comment lancer l'app sur Replit.
+    - Les prochaines étapes (ex. : ajouter Firebase pour un chat en temps réel).
+5. Bonus (facultatif) : Ajoute un bouton "Check-in" pour simuler un enregistrement de sécurité ("Je vais bien") qui s'affiche dans le chat.
+
+**Contraintes** :
+
+- Code simple, adapté aux débutants.
+- Respecte les critères du hackathon : impact (entraide communautaire), fonction (l'app doit marcher), design (épuré et intuitif), présentation (prêt pour une démo vidéo).
+- Prévois un dossier `static/` pour CSS et `templates/` pour HTML.
+
+**Exemple de structure attendue** :
+
+```
+kizuna-alert/
+├── main.py              # Backend Flask
+├── templates/
+│   ├── index.html       # Page d'accueil avec alerte et formulaire
+│   ├── chat.html        # Page de chat communautaire
+├── static/
+│   ├── style.css        # Design minimaliste
+├── README.md            # Instructions et contexte
+
+```
+
+**Livrables** :
+
+- Code fonctionnel sur Replit.
+- Interface testable via le lien Replit.
+- README clair pour les juges du hackathon.
