@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kizuna Alert - Alerte Communautaire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>絆 Kizuna Alert</h1>
+        <p class="tagline">Ensemble pour la résilience communautaire</p>
+    </header>
+
+    <div class="container">
+        <!-- Disaster Alert Section -->
+        <section class="alert-section">
+            <h2>🚨 Alertes en Cours</h2>
+            {% if alerts %}
+                {% for alert in alerts %}
+                <div class="alert-item">
+                    <strong>{{ alert.type }}</strong> de magnitude <strong>{{ alert.magnitude }}</strong> 
+                    détecté à <strong>{{ alert.location }}</strong>
+                    <span class="alert-badge">{{ alert.time }}</span>
+                    <br>
+                    <span style="color: #e74c3c;">⚠️ Restez calme et suivez les procédures de sécurité</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucune alerte active pour le moment.</p>
+            {% endif %}
+        </section>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>À propos de Kizuna Alert</h3>
+            <p>
+                Kizuna (絆) signifie "lien" en japonais. Cette application connecte les membres d'un même quartier 
+                pour partager des ressources et s'entraider pendant les catastrophes naturelles.
+            </p>
+        </div>
+
+        <!-- Postal Code Form Section -->
+        <section class="form-section">
+            <h2>Rejoindre Votre Groupe d'Entraide</h2>
+            <p style="margin-bottom: 20px;">
+                Entrez votre code postal japonais pour rejoindre le groupe d'entraide de votre quartier 
+                et accéder au chat communautaire.
+            </p>
+            
+            <form action="{{ url_for('join_neighborhood') }}" method="POST">
+                <div class="form-group">
+                    <label for="postal_code">Code Postal Japonais</label>
+                    <input 
+                        type="text" 
+                        id="postal_code" 
+                        name="postal_code" 
+                        placeholder="Ex: 100-0001 (Chiyoda, Tokyo)" 
+                        required
+                        pattern="\d{3}-?\d{4}"
+                    >
+                    <p class="hint">
+                        Exemples: 100-0001 (Chiyoda), 150-0001 (Shibuya), 160-0001 (Shinjuku)
+                    </p>
+                </div>
+                
+                <button type="submit" class="btn">Rejoindre Mon Quartier</button>
+            </form>
+        </section>
+
+        <!-- How it Works -->
+        <section class="form-section">
+            <h2>Comment Ça Marche ?</h2>
+            <ul style="padding-left: 20px; color: #34495e;">
+                <li style="margin-bottom: 10px;">
+                    <strong>1. Rejoignez</strong> - Entrez votre code postal pour rejoindre votre groupe de quartier
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>2. Communiquez</strong> - Partagez des ressources et demandez de l'aide dans le chat
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>3. Check-in</strong> - Signalez que vous êtes en sécurité pour rassurer vos voisins
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>4. Entraide</strong> - Soutenez votre communauté pendant les urgences
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>
+            Youth Coders Collective Hackathon 2025 | Créé avec ❤️ pour la résilience communautaire
+        </p>
+    </footer>
+</body>
+</html>

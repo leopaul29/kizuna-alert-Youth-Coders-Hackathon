@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Communautaire - Kizuna Alert</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>絆 Kizuna Alert</h1>
+        <p class="tagline">Chat Communautaire</p>
+    </header>
+
+    <div class="container">
+        <!-- Active Alerts (smaller version) -->
+        {% if alerts %}
+        <div class="alert-section" style="padding: 15px; margin-bottom: 20px;">
+            <strong style="color: #e74c3c;">⚠️ Alerte Active:</strong>
+            {% for alert in alerts %}
+                {{ alert.type }} {{ alert.magnitude }} à {{ alert.location }} ({{ alert.time }})
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <h2>{{ neighborhood }}</h2>
+            <p class="postal-code">Code Postal: {{ postal_code }}</p>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Messages de la Communauté</h3>
+            
+            {% for message in messages %}
+            <div class="message {{ message.type }}">
+                <div class="message-header">
+                    <span class="message-user">{{ message.user }}</span>
+                    <span class="message-time">{{ message.time }}</span>
+                </div>
+                <div class="message-content">
+                    {{ message.message }}
+                </div>
+            </div>
+            {% endfor %}
+
+            {% if messages|length == 0 %}
+            <div class="message info">
+                <div class="message-content">
+                    Aucun message pour le moment. Soyez le premier à partager des informations utiles!
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Chat Actions -->
+        <div class="chat-actions">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Actions Rapides</h3>
+            
+            {% if checked_in %}
+            <div style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-radius: 6px; border-left: 4px solid #27ae60;">
+                <p style="color: #155724; margin: 0;">
+                    <strong>✓ Check-in enregistré!</strong> Votre statut de sécurité a été partagé avec votre communauté.
+                </p>
+            </div>
+            {% endif %}
+            
+            <form action="{{ url_for('checkin') }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-checkin" {% if checked_in %}disabled style="opacity: 0.6; cursor: not-allowed;"{% endif %}>
+                    {% if checked_in %}
+                        ✓ Check-in Effectué
+                    {% else %}
+                        ✓ Je Vais Bien (Check-in)
+                    {% endif %}
+                </button>
+            </form>
+            
+            <a href="{{ url_for('leave') }}" class="btn btn-leave">
+                Quitter le Groupe
+            </a>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 6px; border-left: 4px solid #f39c12;">
+                <p style="color: #856404; margin: 0;">
+                    <strong>Note:</strong> Dans la version finale, vous pourrez envoyer vos propres messages. 
+                    Pour cette démo, les messages sont simulés pour montrer les fonctionnalités.
+                </p>
+            </div>
+        </div>
+
+        <!-- Safety Tips -->
+        <div class="info-box" style="margin-top: 20px;">
+            <h3>Conseils de Sécurité 安全</h3>
+            <ul>
+                <li>Restez calme et suivez les instructions des autorités</li>
+                <li>Vérifiez régulièrement les alertes et messages de votre communauté</li>
+                <li>Partagez vos ressources avec ceux qui en ont besoin</li>
+                <li>Utilisez le check-in pour rassurer vos voisins</li>
+                <li>Gardez votre téléphone chargé et ayez une lampe de poche à portée</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            Youth Coders Collective Hackathon 2025 | Créé avec ❤️ pour la résilience communautaire
+        </p>
+    </footer>
+
+    <!-- Auto-scroll to bottom of messages -->
+    <script>
+        // Scroll to the latest message
+        const chatMessages = document.querySelector('.chat-messages');
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
