@@ -86,7 +86,8 @@ Uses Flask sessions to track:
 ✅ **Presentation** - Complete README and code comments  
 
 ## User Preferences
-- French language interface (requested in project requirements)
+- **English language interface** (translated from French for better accessibility)
 - Beginner-friendly code structure
 - Focus on demo-ready functionality
 - Clean, well-commented code
+- Maintain Japanese cultural elements (絆 kanji, neighborhood names)

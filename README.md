@@ -2,160 +2,168 @@
 
 **Youth Coders Collective Hackathon 2025**
 
-Une application web de résilience communautaire pour l'entraide lors de catastrophes naturelles au Japon.
+A community resilience web application for mutual aid during natural disasters in Japan.
 
-## 🎯 Objectif du Projet
+## 🎯 Project Objective
 
-Kizuna (絆) signifie "lien" ou "connexion" en japonais. Cette application connecte les résidents d'un même quartier japonais pour:
-- Recevoir des alertes de catastrophes en temps réel
-- Partager des ressources (eau, nourriture, abri)
-- Demander de l'aide lors d'urgences
-- Signaler leur sécurité à leurs voisins (check-in)
-- Renforcer la solidarité communautaire
+Kizuna (絆) means "bond" or "connection" in Japanese. This application connects residents of the same Japanese neighborhood to:
+- Receive real-time disaster alerts
+- Share resources (water, food, shelter)
+- Request help during emergencies
+- Signal their safety to neighbors (check-in)
+- Strengthen community solidarity
 
-## 🌟 Alignement avec le Hackathon
+## 🌐 Language & Accessibility
 
-### Impact Social (Social Good)
-- **Entraide communautaire**: Facilite la solidarité entre voisins lors de crises
-- **Résilience**: Renforce la capacité des communautés à faire face aux catastrophes
-- **Inclusion**: Accessible à tous les résidents d'un quartier, peu importe leur âge
+**The entire application interface is now available in English** for broader accessibility and international reach. While maintaining Japanese cultural elements (such as the 絆 kanji and Japanese neighborhood names), all user-facing text, alerts, and messages are presented in clear, professional English to ensure:
+- Global accessibility for international users
+- Clear communication during emergency situations
+- Better demonstration for international hackathon judges
+- Easier adoption for non-Japanese speaking communities
 
-### Fonction
-- Alertes de catastrophes simulées (séismes, typhons, etc.)
-- Groupes de quartier basés sur les codes postaux japonais
-- Chat communautaire pour partager ressources et informations
-- Système de check-in pour rassurer ses voisins
+## 🌟 Hackathon Alignment
+
+### Social Impact (Social Good)
+- **Community Mutual Aid**: Facilitates solidarity between neighbors during crises
+- **Resilience**: Strengthens communities' ability to face disasters
+- **Inclusion**: Accessible to all neighborhood residents, regardless of age
+
+### Function
+- Simulated disaster alerts (earthquakes, typhoons, etc.)
+- Neighborhood groups based on Japanese postal codes
+- Community chat to share resources and information
+- Check-in system to reassure neighbors
 
 ### Design
-- Esthétique **wabi-sabi** japonaise: minimaliste, épurée, fonctionnelle
-- Palette de couleurs apaisantes: bleu, blanc, gris
-- Interface intuitive et accessible
-- Typography claire (Roboto)
+- Japanese **wabi-sabi** aesthetic: minimalist, clean, functional
+- Calming color palette: blue, white, grey
+- Intuitive and accessible interface
+- Clear typography (Roboto)
 
-### Présentation
-- Code bien commenté et structuré
-- Application fonctionnelle prête pour démo
-- Documentation complète
+### Presentation
+- Well-commented and structured code
+- Fully functional demo-ready application
+- Complete documentation
 
-## 🚀 Comment Lancer l'Application sur Replit
+## 🚀 How to Launch the Application on Replit
 
-### Étape 1: Ouvrir le Projet
-Le projet est déjà configuré avec tous les fichiers nécessaires.
+### Step 1: Open the Project
+The project is already configured with all necessary files.
 
-### Étape 2: Installer les Dépendances
-Les dépendances sont automatiquement installées par Replit (Flask est déjà configuré).
+### Step 2: Install Dependencies
+Dependencies are automatically installed by Replit (Flask is already configured).
 
-### Étape 3: Lancer l'Application
-Cliquez sur le bouton **Run** ou exécutez dans le terminal:
+### Step 3: Launch the Application
+Click the **Run** button or execute in the terminal:
 ```bash
 python main.py
 ```
 
-### Étape 4: Tester l'Application
-1. Ouvrez l'application dans votre navigateur (utilisez l'URL Replit fournie)
-2. Sur la page d'accueil, vous verrez une alerte de séisme simulée
-3. Entrez un code postal japonais (ex: `100-0001` pour Chiyoda, Tokyo)
-4. Accédez au chat communautaire de votre quartier
-5. Voyez les messages simulés de partage de ressources
-6. Cliquez sur "Je Vais Bien" pour simuler un check-in de sécurité
+### Step 4: Test the Application
+1. Open the application in your browser (use the provided Replit URL)
+2. On the homepage, you'll see a simulated earthquake alert
+3. Enter a Japanese postal code (e.g., `100-0001` for Chiyoda, Tokyo)
+4. Access your neighborhood's community chat
+5. View simulated resource-sharing messages
+6. Click "I'm Safe" to simulate a safety check-in
 
-## 📁 Structure du Projet
+## 📁 Project Structure
 
 ```
 kizuna-alert/
-├── main.py              # Backend Flask avec routes et logique
-├── templates/           # Templates HTML
-│   ├── index.html       # Page d'accueil avec alertes et formulaire
-│   └── chat.html        # Page de chat communautaire
-├── static/              # Fichiers statiques
-│   └── style.css        # Design wabi-sabi minimaliste
-├── README.md            # Ce fichier
-└── pyproject.toml       # Configuration des dépendances Python
+├── main.py              # Flask backend with routes and logic
+├── templates/           # HTML templates
+│   ├── index.html       # Homepage with alerts and form
+│   └── chat.html        # Community chat page
+├── static/              # Static files
+│   └── style.css        # Minimalist wabi-sabi design
+├── README.md            # This file
+└── pyproject.toml       # Python dependencies configuration
 ```
 
-## 🎨 Fonctionnalités Actuelles
+## 🎨 Current Features
 
-### Page d'Accueil (`/`)
-- **Alertes de catastrophe**: Affichage simulé de séisme
-- **Formulaire de code postal**: Rejoindre son groupe de quartier
-- **Guide d'utilisation**: Comment fonctionne l'application
-- **Design épuré**: Esthétique wabi-sabi japonaise
+### Homepage (`/`)
+- **Disaster Alerts**: Simulated earthquake display
+- **Postal Code Form**: Join your neighborhood group
+- **User Guide**: How the application works
+- **Clean Design**: Japanese wabi-sabi aesthetic
 
-### Page de Chat (`/chat`)
-- **Messages communautaires simulés**: 
-  - 💧 Partage de ressources (eau, nourriture)
-  - 🆘 Demandes d'aide (évacuation, assistance)
-  - ✓ Check-ins de sécurité ("Je vais bien")
-  - ℹ️ Informations utiles (centres d'évacuation)
-- **Types de messages codés par couleur** pour faciliter la lecture
-- **Bouton check-in** pour signaler sa sécurité
-- **Conseils de sécurité** intégrés
+### Chat Page (`/chat`)
+- **Simulated Community Messages**: 
+  - 💧 Resource sharing (water, food)
+  - 🆘 Help requests (evacuation, assistance)
+  - ✓ Safety check-ins ("I'm safe")
+  - ℹ️ Useful information (evacuation centers)
+- **Color-coded message types** for easy reading
+- **Check-in button** to signal safety
+- **Integrated safety tips**
 
-## 🔮 Prochaines Étapes (Version Complète)
+## 🔮 Next Steps (Full Version)
 
-### Phase 2 - Chat en Temps Réel
-- [ ] Intégrer Firebase ou WebSockets pour un chat en direct
-- [ ] Permettre aux utilisateurs d'envoyer leurs propres messages
-- [ ] Système de notifications push pour nouvelles alertes
+### Phase 2 - Real-time Chat
+- [ ] Integrate Firebase or WebSockets for live chat
+- [ ] Allow users to send their own messages
+- [ ] Push notification system for new alerts
 
-### Phase 3 - Fonctionnalités Avancées
-- [ ] Authentification utilisateur (nom, profil)
-- [ ] Géolocalisation pour alertes ciblées
-- [ ] Carte interactive montrant ressources disponibles
-- [ ] Intégration avec vraies APIs d'alertes météo (JMA - Japan Meteorological Agency)
-- [ ] Support multilingue (japonais/anglais)
+### Phase 3 - Advanced Features
+- [ ] User authentication (name, profile)
+- [ ] Geolocation for targeted alerts
+- [ ] Interactive map showing available resources
+- [ ] Integration with real weather alert APIs (JMA - Japan Meteorological Agency)
+- [ ] Multilingual support (Japanese/English toggle)
 
-### Phase 4 - Mobile & Accessibilité
-- [ ] Application mobile native (React Native/Flutter)
-- [ ] Mode hors-ligne pour situations d'urgence
-- [ ] Accessibilité améliorée (lecteurs d'écran, contraste)
+### Phase 4 - Mobile & Accessibility
+- [ ] Native mobile application (React Native/Flutter)
+- [ ] Offline mode for emergency situations
+- [ ] Enhanced accessibility (screen readers, contrast)
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies Used
 
 - **Backend**: Flask (Python)
-- **Frontend**: HTML5, CSS3, JavaScript minimal
-- **Design**: Wabi-sabi minimaliste, design responsive
-- **Données**: Simulées (dictionnaires Python) pour la démo
+- **Frontend**: HTML5, CSS3, minimal JavaScript
+- **Design**: Minimalist wabi-sabi, responsive design
+- **Data**: Simulated (Python dictionaries) for demo
 
-## 🎓 Concepts Techniques Démontrés
+## 🎓 Technical Concepts Demonstrated
 
-- **Routing Flask**: Gestion de plusieurs pages et formulaires
-- **Sessions**: Stockage temporaire du code postal utilisateur
-- **Templates Jinja2**: Génération dynamique de HTML
-- **CSS Moderne**: Gradients, flexbox, design responsive
-- **UX Design**: Interface claire et intuitive pour situations d'urgence
+- **Flask Routing**: Managing multiple pages and forms
+- **Sessions**: Temporary storage of user postal code
+- **Jinja2 Templates**: Dynamic HTML generation
+- **Modern CSS**: Gradients, flexbox, responsive design
+- **UX Design**: Clear and intuitive interface for emergency situations
 
-## 🌍 Impact Potentiel
+## 🌍 Potential Impact
 
-Le Japon fait face à de nombreuses catastrophes naturelles (séismes, typhons, tsunamis). **Kizuna Alert** vise à:
-- Réduire l'isolement des personnes âgées lors de crises
-- Optimiser la distribution de ressources limitées
-- Renforcer les liens communautaires avant, pendant et après les urgences
-- Compléter les systèmes d'alerte officiels avec l'entraide de proximité
+Japan faces numerous natural disasters (earthquakes, typhoons, tsunamis). **Kizuna Alert** aims to:
+- Reduce isolation of elderly people during crises
+- Optimize distribution of limited resources
+- Strengthen community bonds before, during, and after emergencies
+- Complement official alert systems with local mutual aid
 
-## 📝 Notes pour la Démo
+## 📝 Demo Notes
 
-Pour votre vidéo de présentation:
-1. Montrez la page d'accueil avec l'alerte active
-2. Démontrez l'entrée d'un code postal
-3. Parcourez les messages du chat communautaire
-4. Cliquez sur le bouton check-in
-5. Expliquez les prochaines étapes (chat en temps réel)
+For your presentation video:
+1. Show the homepage with the active alert
+2. Demonstrate entering a postal code
+3. Browse through the community chat messages
+4. Click the check-in button
+5. Explain next steps (real-time chat)
 
-## 👥 Codes Postaux de Démonstration
+## 👥 Demo Postal Codes
 
-- `100-0001` - Chiyoda Ward, Tokyo (Centre ville)
-- `150-0001` - Shibuya Ward, Tokyo (Quartier animé)
-- `160-0001` - Shinjuku Ward, Tokyo (Centre d'affaires)
-- `106-0001` - Minato Ward, Tokyo (Zone résidentielle)
-- `110-0001` - Taito Ward, Tokyo (Quartier historique)
+- `100-0001` - Chiyoda Ward, Tokyo (City center)
+- `150-0001` - Shibuya Ward, Tokyo (Busy district)
+- `160-0001` - Shinjuku Ward, Tokyo (Business center)
+- `106-0001` - Minato Ward, Tokyo (Residential area)
+- `110-0001` - Taito Ward, Tokyo (Historic district)
 
 ## 📧 Contact & Contribution
 
-Créé pour le **Youth Coders Collective Hackathon 2025**
+Created for the **Youth Coders Collective Hackathon 2025**
 
-Thème: **Social Good** + **Japon**
+Theme: **Social Good** + **Japan**
 
 ---
 
-**絆** - Les liens qui nous unissent sont plus forts que les catastrophes qui nous frappent.
+**絆** - The bonds that unite us are stronger than the disasters that strike us.

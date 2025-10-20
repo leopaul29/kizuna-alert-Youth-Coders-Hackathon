@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kizuna Alert - Alerte Communautaire</title>
+    <title>Kizuna Alert - Community Alert System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,48 +12,48 @@
 <body>
     <header>
         <h1>絆 Kizuna Alert</h1>
-        <p class="tagline">Ensemble pour la résilience communautaire</p>
+        <p class="tagline">Together for Community Resilience</p>
     </header>
 
     <div class="container">
         <!-- Disaster Alert Section -->
         <section class="alert-section">
-            <h2>🚨 Alertes en Cours</h2>
+            <h2>🚨 Active Alerts</h2>
             {% if alerts %}
                 {% for alert in alerts %}
                 <div class="alert-item">
-                    <strong>{{ alert.type }}</strong> de magnitude <strong>{{ alert.magnitude }}</strong> 
-                    détecté à <strong>{{ alert.location }}</strong>
+                    <strong>{{ alert.type }}</strong> magnitude <strong>{{ alert.magnitude }}</strong> 
+                    detected in <strong>{{ alert.location }}</strong>
                     <span class="alert-badge">{{ alert.time }}</span>
                     <br>
-                    <span style="color: #e74c3c;">⚠️ Restez calme et suivez les procédures de sécurité</span>
+                    <span style="color: #e74c3c;">⚠️ Stay calm and follow safety procedures</span>
                 </div>
                 {% endfor %}
             {% else %}
-                <p>Aucune alerte active pour le moment.</p>
+                <p>No active alerts at this time.</p>
             {% endif %}
         </section>
 
         <!-- Info Box -->
         <div class="info-box">
-            <h3>À propos de Kizuna Alert</h3>
+            <h3>About Kizuna Alert</h3>
             <p>
-                Kizuna (絆) signifie "lien" en japonais. Cette application connecte les membres d'un même quartier 
-                pour partager des ressources et s'entraider pendant les catastrophes naturelles.
+                Kizuna (絆) means "bond" or "connection" in Japanese. This application connects members of the same 
+                neighborhood to share resources and support each other during natural disasters.
             </p>
         </div>
 
         <!-- Postal Code Form Section -->
         <section class="form-section">
-            <h2>Rejoindre Votre Groupe d'Entraide</h2>
+            <h2>Join Your Mutual Aid Group</h2>
             <p style="margin-bottom: 20px;">
-                Entrez votre code postal japonais pour rejoindre le groupe d'entraide de votre quartier 
-                et accéder au chat communautaire.
+                Enter your Japanese postal code to join your neighborhood's mutual aid group 
+                and access the community chat.
             </p>
             
             <form action="{{ url_for('join_neighborhood') }}" method="POST">
                 <div class="form-group">
-                    <label for="postal_code">Code Postal Japonais</label>
+                    <label for="postal_code">Japanese Postal Code</label>
                     <input 
                         type="text" 
                         id="postal_code" 
@@ -63,29 +63,29 @@
                         pattern="\d{3}-?\d{4}"
                     >
                     <p class="hint">
-                        Exemples: 100-0001 (Chiyoda), 150-0001 (Shibuya), 160-0001 (Shinjuku)
+                        Examples: 100-0001 (Chiyoda), 150-0001 (Shibuya), 160-0001 (Shinjuku)
                     </p>
                 </div>
                 
-                <button type="submit" class="btn">Rejoindre Mon Quartier</button>
+                <button type="submit" class="btn">Join My Neighborhood</button>
             </form>
         </section>
 
         <!-- How it Works -->
         <section class="form-section">
-            <h2>Comment Ça Marche ?</h2>
+            <h2>How It Works</h2>
             <ul style="padding-left: 20px; color: #34495e;">
                 <li style="margin-bottom: 10px;">
-                    <strong>1. Rejoignez</strong> - Entrez votre code postal pour rejoindre votre groupe de quartier
+                    <strong>1. Join</strong> - Enter your postal code to join your neighborhood group
                 </li>
                 <li style="margin-bottom: 10px;">
-                    <strong>2. Communiquez</strong> - Partagez des ressources et demandez de l'aide dans le chat
+                    <strong>2. Communicate</strong> - Share resources and ask for help in the chat
                 </li>
                 <li style="margin-bottom: 10px;">
-                    <strong>3. Check-in</strong> - Signalez que vous êtes en sécurité pour rassurer vos voisins
+                    <strong>3. Check-in</strong> - Signal that you're safe to reassure your neighbors
                 </li>
                 <li style="margin-bottom: 10px;">
-                    <strong>4. Entraide</strong> - Soutenez votre communauté pendant les urgences
+                    <strong>4. Support</strong> - Help your community during emergencies
                 </li>
             </ul>
         </section>
@@ -93,7 +93,7 @@
 
     <footer>
         <p>
-            Youth Coders Collective Hackathon 2025 | Créé avec ❤️ pour la résilience communautaire
+            Youth Coders Collective Hackathon 2025 | Built with ❤️ for community resilience
         </p>
     </footer>
 </body>

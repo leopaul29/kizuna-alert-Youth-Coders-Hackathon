@@ -16,7 +16,7 @@ app.secret_key = os.environ.get('SESSION_SECRET', 'dev-secret-key-change-in-prod
 # Simulated disaster alerts (in a real app, this would come from an API)
 DISASTER_ALERTS = [
     {
-        'type': 'Séisme',
+        'type': 'Earthquake',
         'magnitude': '5.0',
         'location': 'Tokyo',
         'time': '14:35 JST',
@@ -36,27 +36,27 @@ NEIGHBORHOOD_GROUPS = {
 # Simulated chat messages for each neighborhood
 CHAT_MESSAGES = {
     '100-0001': [
-        {'user': 'Yuki S.', 'message': "J'ai de l'eau à partager - coins des rues Marunouchi", 'time': '14:42', 'type': 'resource'},
-        {'user': 'Kenji T.', 'message': 'Besoin d\'aide pour évacuation - personne âgée au 3ème étage', 'time': '14:45', 'type': 'help'},
-        {'user': 'Aiko M.', 'message': 'Je vais bien ✓', 'time': '14:47', 'type': 'checkin'},
-        {'user': 'Hiroshi N.', 'message': 'Centre d\'évacuation ouvert à l\'école primaire Chiyoda', 'time': '14:50', 'type': 'info'}
+        {'user': 'Yuki S.', 'message': "I have water to share - corner of Marunouchi Street", 'time': '14:42', 'type': 'resource'},
+        {'user': 'Kenji T.', 'message': 'Need help with evacuation - elderly person on 3rd floor', 'time': '14:45', 'type': 'help'},
+        {'user': 'Aiko M.', 'message': "I'm safe ✓", 'time': '14:47', 'type': 'checkin'},
+        {'user': 'Hiroshi N.', 'message': 'Evacuation center open at Chiyoda Elementary School', 'time': '14:50', 'type': 'info'}
     ],
     '150-0001': [
-        {'user': 'Sakura I.', 'message': 'Lampes de poche disponibles au konbini familial', 'time': '14:40', 'type': 'resource'},
-        {'user': 'Takeshi Y.', 'message': 'Je vais bien ✓', 'time': '14:44', 'type': 'checkin'},
-        {'user': 'Mei L.', 'message': 'Quelqu\'un a des nouvelles de la ligne Yamanote?', 'time': '14:48', 'type': 'help'}
+        {'user': 'Sakura I.', 'message': 'Flashlights available at Family Mart convenience store', 'time': '14:40', 'type': 'resource'},
+        {'user': 'Takeshi Y.', 'message': "I'm safe ✓", 'time': '14:44', 'type': 'checkin'},
+        {'user': 'Mei L.', 'message': 'Does anyone have news about the Yamanote Line?', 'time': '14:48', 'type': 'help'}
     ],
     '160-0001': [
-        {'user': 'Ryu K.', 'message': 'Je vais bien ✓', 'time': '14:43', 'type': 'checkin'},
-        {'user': 'Nanami H.', 'message': 'Couvertures disponibles - contactez-moi', 'time': '14:46', 'type': 'resource'}
+        {'user': 'Ryu K.', 'message': "I'm safe ✓", 'time': '14:43', 'type': 'checkin'},
+        {'user': 'Nanami H.', 'message': 'Blankets available - contact me', 'time': '14:46', 'type': 'resource'}
     ],
     '106-0001': [
-        {'user': 'Daiki W.', 'message': 'Centre médical Minato ouvert pour urgences', 'time': '14:41', 'type': 'info'},
-        {'user': 'Emiko F.', 'message': 'Je vais bien ✓', 'time': '14:49', 'type': 'checkin'}
+        {'user': 'Daiki W.', 'message': 'Minato Medical Center open for emergencies', 'time': '14:41', 'type': 'info'},
+        {'user': 'Emiko F.', 'message': "I'm safe ✓", 'time': '14:49', 'type': 'checkin'}
     ],
     '110-0001': [
-        {'user': 'Kazuo S.', 'message': 'Nourriture d\'urgence disponible au temple', 'time': '14:44', 'type': 'resource'},
-        {'user': 'Yui A.', 'message': 'Je vais bien ✓', 'time': '14:51', 'type': 'checkin'}
+        {'user': 'Kazuo S.', 'message': 'Emergency food available at the temple', 'time': '14:44', 'type': 'resource'},
+        {'user': 'Yui A.', 'message': "I'm safe ✓", 'time': '14:51', 'type': 'checkin'}
     ]
 }
 
@@ -80,7 +80,7 @@ def join_neighborhood():
     else:
         # For demo purposes, accept any postal code and use a default group
         session['postal_code'] = postal_code
-        session['neighborhood'] = f'Communauté {postal_code}'
+        session['neighborhood'] = f'Community {postal_code}'
         return redirect(url_for('chat'))
 
 
@@ -95,16 +95,16 @@ def chat():
     
     # Get base messages for this neighborhood
     messages = CHAT_MESSAGES.get(postal_code, [
-        {'user': 'Système', 'message': 'Bienvenue dans votre groupe d\'entraide communautaire!', 'time': datetime.now().strftime('%H:%M'), 'type': 'info'}
+        {'user': 'System', 'message': 'Welcome to your community mutual aid group!', 'time': datetime.now().strftime('%H:%M'), 'type': 'info'}
     ]).copy()
     
     # Add user's check-in message if they have checked in
     if session.get('checked_in'):
-        user_name = session.get('user_name', 'Vous')
+        user_name = session.get('user_name', 'You')
         checkin_time = session.get('checkin_time', datetime.now().strftime('%H:%M'))
         messages.append({
             'user': user_name,
-            'message': 'Je vais bien ✓',
+            'message': "I'm safe ✓",
             'time': checkin_time,
             'type': 'checkin'
         })
@@ -129,7 +129,7 @@ def checkin():
     
     # Set a default user name if not already set
     if 'user_name' not in session:
-        session['user_name'] = 'Vous'
+        session['user_name'] = 'You'
     
     return redirect(url_for('chat'))
 
