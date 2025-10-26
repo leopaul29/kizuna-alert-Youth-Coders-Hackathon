@@ -152,6 +152,6 @@ def evacuation():
                          postal_code=postal_code)
 
 
-if __name__ == '__main__':
-    # Run on 0.0.0.0:5000 for Replit compatibility
-    app.run(host='0.0.0.0', port=5000, debug=True)
+# if __name__ == '__main__':
+#     # Run on 0.0.0.0:5000 for Replit compatibility
+#     app.run(host='0.0.0.0', port=5000, debug=True)
