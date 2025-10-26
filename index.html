@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kizuna Alert - Community Alert System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .alert-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
+        }
+
+        .alert-section h2 {
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .alert-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .alert-badge {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .hint {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            box-shadow: 0 4px 6px rgba(149, 165, 166, 0.3);
+        }
+
+        .btn-checkin {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            box-shadow: 0 4px 6px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-evacuation {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            box-shadow: 0 4px 6px rgba(243, 156, 18, 0.3);
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .btn-leave {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .chat-header {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .chat-header h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .postal-code {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .chat-messages {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .message-resource {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .message-help {
+            background-color: #fff3e0;
+            border-color: #ff9800;
+        }
+
+        .message-checkin {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .message-info {
+            background-color: #f3e5f5;
+            border-color: #9c27b0;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .message-user {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .message-time {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .message-content {
+            color: #34495e;
+        }
+
+        .chat-actions {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .evacuation-map {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .evacuation-map img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .evacuation-info {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+            margin-top: 50px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🔗 Kizuna Alert</h1>
+        <p class="tagline">Together for Community Resilience</p>
+    </header>
+
+    <!-- Page d'accueil -->
+    <div id="homePage" class="container">
+        <section class="alert-section">
+            <h2>🚨 Active Alerts</h2>
+            <div class="alert-item">
+                <strong>Earthquake</strong> magnitude <strong>5.0</strong>
+                detected in <strong>Tokyo</strong>
+                <span class="alert-badge">14:35 JST</span>
+                <br><br>
+                <span>⚠️ Stay calm and follow safety procedures</span>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <h3>About Kizuna Alert</h3>
+            <p>
+                Kizuna (絆) means "bond" or "connection" in Japanese. This application connects members of the same
+                neighborhood to share resources and support each other during natural disasters.
+            </p>
+        </div>
+
+        <section class="form-section">
+            <h2>Join Your Mutual Aid Group</h2>
+            <p style="margin-bottom: 20px;">
+                Enter your Japanese postal code to join your neighborhood's mutual aid group
+                and access the community chat.
+            </p>
+
+            <form id="postalForm" onsubmit="joinNeighborhood(event)">
+                <div class=" form-group">
+                    <label for="postal_code">Japanese Postal Code</label>
+                    <input type="text" id="postal_code" name="postal_code" placeholder="Ex: 100-0001 (Chiyoda, Tokyo)"
+                        required>
+                    <p class="hint">
+                        Examples: 100-0001 (Chiyoda), 150-0001 (Shibuya), 160-0001 (Shinjuku)
+                    </p>
+                </div>
+                <button type="submit" class="btn">Join My Neighborhood</button>
+            </form>
+        </section>
+
+        <section class="form-section">
+            <h2>How It Works</h2>
+            <ul>
+                <li><strong>1. Join</strong> - Enter your postal code to join your neighborhood group</li>
+                <li><strong>2. Communicate</strong> - Share resources and ask for help in the chat</li>
+                <li><strong>3. Check-in</strong> - Signal that you're safe to reassure your neighbors</li>
+                <li><strong>4. Support</strong> - Help your community during emergencies</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Page de chat -->
+    <div id="chatPage" class="container hidden">
+        <section class="alert-section" style="padding: 15px; margin-bottom: 20px;">
+            <strong>⚠️ Active Alert:</strong> Earthquake 5.0 in Tokyo (14:35 JST)
+        </section>
+
+        <div class="chat-header">
+            <h2 id="neighborhoodName">Community Chat</h2>
+            <p class="postal-code">Postal Code: <span id="displayPostalCode"></span></p>
+        </div>
+
+        <div class="chat-messages">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Community Messages</h3>
+            <div id="messageContainer"></div>
+        </div>
+
+        <div class="chat-actions">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Quick Actions</h3>
+
+            <div id="checkinSuccess" class="hidden"
+                style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-radius: 6px; border-left: 4px solid #27ae60;">
+                <p style="color: #155724; margin: 0;">
+                    <strong>✓ Check-in recorded!</strong> Your safety status has been shared with your community.
+                </p>
+            </div>
+
+            <button id="checkinBtn" class="btn btn-checkin" style="margin-bottom: 15px;">
+                ✓ I'm Safe (Check-in)
+            </button>
+
+            <button onclick="showEvacuation()" class="btn btn-evacuation" style="margin-bottom: 15px;">
+                📍 View Evacuation Centers
+            </button>
+
+            <button onclick="goHome()" class="btn btn-leave" style="margin-bottom: 15px;">
+                Leave Group
+            </button>
+
+            <div
+                style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 6px; border-left: 4px solid #f39c12;">
+                <p style="color: #856404; margin: 0;">
+                    <strong>Note:</strong> In the final version, you'll be able to send your own messages.
+                    For this demo, messages are simulated to showcase the functionality.
+                </p>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 20px;">
+            <h3>Safety Tips 安全</h3>
+            <ul>
+                <li>Stay calm and follow instructions from authorities</li>
+                <li>Check alerts and community messages regularly</li>
+                <li>Share your resources with those in need</li>
+                <li>Use check-in to reassure your neighbors</li>
+                <li>Keep your phone charged and have a flashlight nearby</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Page d'évacuation -->
+    <div id="evacuationPage" class="container hidden">
+        <section class="alert-section" style="padding: 15px; margin-bottom: 20px;">
+            <strong>⚠️ Active Alert:</strong> Earthquake 5.0 in Tokyo (14:35 JST)
+        </section>
+
+        <div class="chat-header">
+            <h2>📍 Nearest Evacuation Center</h2>
+            <p class="postal-code">Route from your location</p>
+        </div>
+
+        <div class="evacuation-map">
+            <h3 style="color: #2c3e50; margin-bottom: 20px; font-weight: 400;">
+                Route to Chiyoda Gym Evacuation Center
+            </h3>
+
+            <div
+                style="background: #e3f2fd; padding: 40px; text-align: center; border-radius: 8px; margin-bottom: 20px;">
+                <!-- <p style="color: #1976d2; font-size: 1.2em;">📍 Map showing evacuation route would be displayed here</p> -->
+                <img src="evacuation_map.png" alt="📍 Map showing evacuation route would be displayed here">
+            </div>
+
+            <div class="evacuation-info">
+                <h3>🏢 Chiyoda Gym (千代田体育館)</h3>
+                <p style="margin-bottom: 15px;">
+                    <strong>Address:</strong> 1-1 Uchikanda, Chiyoda-ku, Tokyo 101-0047
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>Distance:</strong> 1.2 km (approximately 15 minutes walk)
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>Capacity:</strong> 500 people
+                </p>
+                <p>
+                    <strong>Facilities:</strong> First aid station, water supply, emergency blankets,
+                    wheelchair accessible, multilingual staff
+                </p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>🚶 Evacuation Instructions</h2>
+            <ol style="padding-left: 25px; line-height: 1.8;">
+                <li style="margin-bottom: 12px;"><strong>Stay calm</strong> - Take a moment to assess your situation
+                </li>
+                <li style="margin-bottom: 12px;"><strong>Grab essentials</strong> - Water, medications, phone,
+                    flashlight, and important documents</li>
+                <li style="margin-bottom: 12px;"><strong>Follow the route</strong> - Use the map above for the safest
+                    walking path</li>
+                <li style="margin-bottom: 12px;"><strong>Help others</strong> - Assist elderly neighbors or those with
+                    mobility challenges</li>
+                <li style="margin-bottom: 12px;"><strong>Check in</strong> - Once you arrive safely, use the check-in
+                    feature to notify your community</li>
+                <li style="margin-bottom: 12px;"><strong>Follow instructions</strong> - Listen to evacuation center
+                    staff for further guidance</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 Alternative Evacuation Centers</h3>
+            <ul>
+                <li><strong>Chiyoda Elementary School</strong> - 0.8 km east, 300 capacity</li>
+                <li><strong>Kanda Community Center</strong> - 1.5 km north, 400 capacity</li>
+                <li><strong>Hibiya Park Shelter</strong> - 2.0 km south, 600 capacity</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <em>Choose the nearest available center. Check with local authorities for real-time capacity
+                    updates.</em>
+            </p>
+        </div>
+
+        <div
+            style="background: #fee; border-left: 4px solid #e74c3c; padding: 20px; margin-top: 20px; border-radius: 8px;">
+            <h3 style="color: #e74c3c; margin-bottom: 12px; font-weight: 400;">
+                🚨 Emergency Contacts
+            </h3>
+            <p style="line-height: 1.8;">
+                <strong>Emergency Services:</strong> 119 (Fire/Ambulance), 110 (Police)<br>
+                <strong>Tokyo Disaster Hotline:</strong> 03-5320-7777<br>
+                <strong>English Support:</strong> 03-5285-8181
+            </p>
+        </div>
+
+        <button onclick="showChat()" class="btn btn-secondary" style="margin-top: 20px;">
+            ← Back to Community Chat
+        </button>
+    </div>
+
+    <footer>
+        <p>Youth Coders Collective Hackathon 2025 | Built with ❤️ for community resilience</p>
+    </footer>
+
+    <script>
+        // Données
+        const neighborhoodGroups = {
+            '100-0001': 'Chiyoda Ward Community',
+            '150-0001': 'Shibuya Ward Community',
+            '160-0001': 'Shinjuku Ward Community',
+            '106-0001': 'Minato Ward Community',
+            '110-0001': 'Taito Ward Community'
+        };
+
+        const chatMessages = {
+            '100-0001': [
+                { user: 'Yuki S.', message: "I have water to share - corner of Marunouchi Street", time: '14:42', type: 'resource' },
+                { user: 'Kenji T.', message: 'Need help with evacuation - elderly person on 3rd floor', time: '14:45', type: 'help' },
+                { user: 'Aiko M.', message: "I'm safe ✓", time: '14:47', type: 'checkin' },
+                { user: 'Hiroshi N.', message: 'Evacuation center open at Chiyoda Elementary School', time: '14:50', type: 'info' }
+            ],
+            '150-0001': [
+                { user: 'Sakura I.', message: 'Flashlights available at Family Mart convenience store', time: '14:40', type: 'resource' },
+                { user: 'Takeshi Y.', message: "I'm safe ✓", time: '14:44', type: 'checkin' },
+                { user: 'Mei L.', message: 'Does anyone have news about the Yamanote Line?', time: '14:48', type: 'help' }
+            ],
+            '160-0001': [
+                { user: 'Ryu K.', message: "I'm safe ✓", time: '14:43', type: 'checkin' },
+                { user: 'Nanami H.', message: 'Blankets available - contact me', time: '14:46', type: 'resource' }
+            ],
+            '106-0001': [
+                { user: 'Daiki W.', message: 'Minato Medical Center open for emergencies', time: '14:41', type: 'info' },
+                { user: 'Emiko F.', message: "I'm safe ✓", time: '14:49', type: 'checkin' }
+            ],
+            '110-0001': [
+                { user: 'Kazuo S.', message: 'Emergency food available at the temple', time: '14:44', type: 'resource' },
+                { user: 'Yui A.', message: "I'm safe ✓", time: '14:51', type: 'checkin' }
+            ]
+        };
+
+        let currentPostalCode = '';
+        let checkedIn = false;
+
+        // Gestion du formulaire
+        document.getElementById('postalForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const postalCode = document.getElementById('postal_code').value.trim();
+
+            if (postalCode) {
+                currentPostalCode = postalCode;
+                const neighborhood = neighborhoodGroups[postalCode] || `Community ${postalCode}`;
+
+                document.getElementById('neighborhoodName').textContent = neighborhood;
+                document.getElementById('displayPostalCode').textContent = postalCode;
+
+                loadMessages(postalCode);
+                showChat();
+            }
+        });
+
+        // Chargement des messages
+        function loadMessages(postalCode) {
+            const container = document.getElementById('messageContainer');
+            const messages = chatMessages[postalCode] || [];
+
+            container.innerHTML = '';
+
+            if (messages.length === 0) {
+                container.innerHTML = '<div class="message message-info"><div class="message-content">No messages yet. Be the first to share helpful information!</div></div>';
+            } else {
+                messages.forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `message message-${msg.type}`;
+                    msgDiv.innerHTML = `
+                        <div class="message-header">
+                            <span class="message-user">${msg.user}</span>
+                            <span class="message-time">${msg.time}</span>
+                        </div>
+                        <div class="message-content">${msg.message}</div>
+                    `;
+                    container.appendChild(msgDiv);
+                });
+            }
+        }
+
+        // Check-in
+        document.getElementById('checkinBtn').addEventListener('click', function () {
+            if (!checkedIn) {
+                checkedIn = true;
+                document.getElementById('checkinSuccess').classList.remove('hidden');
+                this.textContent = '✓ Checked In';
+                this.disabled = true;
+                this.style.opacity = '0.6';
+                this.style.cursor = 'not-allowed';
+
+                // Ajouter le message de check-in
+                const now = new Date();
+                const time = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                const container = document.getElementById('messageContainer');
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message message-checkin';
+                msgDiv.innerHTML = `
+                    <div class="message-header">
+                        <span class="message-user">You</span>
+                        <span class="message-time">${time}</span>
+                    </div>
+                    <div class="message-content">I'm safe ✓</div>
+                `;
+                container.appendChild(msgDiv);
+            }
+        });
+
+        // Navigation
+        function showChat() {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('chatPage').classList.remove('hidden');
+            document.getElementById('evacuationPage').classList.add('hidden');
+        }
+
+        function showEvacuation() {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('chatPage').classList.add('hidden');
+            document.getElementById('evacuationPage').classList.remove('hidden');
+        }
+
+        function goHome() {
+            document.getElementById('homePage').classList.remove('hidden');
+            document.getElementById('chatPage').classList.add('hidden');
+            document.getElementById('evacuationPage').classList.add('hidden');
+
+            // Reset
+            currentPostalCode = '';
+            checkedIn = false;
+            document.getElementById('checkinBtn').disabled = false;
+            document.getElementById('checkinBtn').textContent = "✓ I'm Safe (Check-in)";
+            document.getElementById('checkinBtn').style.opacity = '1';
+            document.getElementById('checkinBtn').style.cursor = 'pointer';
+            document.getElementById('checkinSuccess').classList.add('hidden');
+            document.getElementById('postal_code').value = '';
+        }
+    </script>
+</body>
+
+</html>
